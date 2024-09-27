@@ -1,0 +1,4 @@
+<select [(ngModel)]="selectedCorralId" (change)="onSelectCorral()" class="border rounded-lg p-2 w-full">
+  <option [value]="null">Selecciona un corral</option>
+  <option *ngFor="let corral of corrals" [value]="corral.id">{{ corral.nombre }}</option>
+</select>

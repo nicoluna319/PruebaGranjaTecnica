@@ -1,0 +1,32 @@
+<div class="p-4 bg-[#F1F5F9] rounded-lg">
+  <h3 class="text-lg font-bold text-[#4A7C59] mb-4">Lista de Animales por Corral</h3>
+
+  <label for="corral" class="block text-[#2D3748] mb-2">Selecciona un corral:</label>
+  <app-corral-select (corralChange)="onCorralChange($event)"></app-corral-select>
+
+  <p *ngIf="averageAge !== null" class="mt-4 text-[#2D3748]">Promedio de edad de los animales: {{ averageAge | number:'1.0-2' }} años</p>
+  <p *ngIf="averageAge === null" class="mt-4 text-red-600">No hay suficiente información para calcular el promedio de edad.</p>
+
+  <table *ngIf="animals.length > 0" class="w-full mt-4 table-auto border-collapse bg-white shadow-lg rounded-lg">
+    <thead class="bg-[#D9BF77] text-[#2D3748]">
+      <tr>
+        <th class="p-2 border">ID</th>
+        <th class="p-2 border">Nombre</th>
+        <th class="p-2 border">Especie</th>
+        <th class="p-2 border">Edad</th>
+        <th class="p-2 border">Peligroso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let animal of animals" class="hover:bg-[#F1F5F9]">
+        <td class="p-2 border">{{ animal.id }}</td>
+        <td class="p-2 border">{{ animal.nombre }}</td>
+        <td class="p-2 border">{{ animal.especie }}</td>
+        <td class="p-2 border">{{ animal.edad }}</td>
+        <td class="p-2 border">{{ animal.peligroso ? 'Sí' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="animals.length === 0" class="mt-4 text-red-600">No hay animales en este corral.</p>
+</div>

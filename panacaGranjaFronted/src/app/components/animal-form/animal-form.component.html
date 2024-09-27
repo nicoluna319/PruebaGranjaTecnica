@@ -1,0 +1,31 @@
+<div class="p-4 bg-[#F1F5F9] rounded-lg">
+  <h3 class="text-lg font-bold text-[#4A7C59] mb-4">Crear Nuevo Animal</h3>
+  <form (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label class="block text-[#2D3748]">Nombre:</label>
+      <input class="border rounded-lg p-2 w-full" [(ngModel)]="newAnimal.nombre" name="nombre" required>
+    </div>
+
+    <div>
+      <label class="block text-[#2D3748]">Especie:</label>
+      <input class="border rounded-lg p-2 w-full" [(ngModel)]="newAnimal.especie" name="especie" required>
+    </div>
+
+    <div>
+      <label class="block text-[#2D3748]">Edad:</label>
+      <input type="number" class="border rounded-lg p-2 w-full" [(ngModel)]="newAnimal.edad" name="edad" required>
+    </div>
+
+    <div>
+      <label class="block text-[#2D3748]">Peligroso:</label>
+      <input type="checkbox" class="mr-2" [(ngModel)]="newAnimal.peligroso" name="peligroso">
+    </div>
+
+    <div>
+      <label class="block text-[#2D3748]">Corral:</label>
+      <app-corral-select [(ngModel)]="newAnimal.corralId" name="corralId" required></app-corral-select>
+    </div>
+
+    <button type="submit" class="bg-[#4A7C59] text-white px-4 py-2 rounded-lg hover:bg-[#A84448]">Crear Animal</button>
+  </form>
+</div>

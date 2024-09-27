@@ -1,0 +1,16 @@
+<div class="p-4 bg-[#F1F5F9] rounded-lg">
+  <h3 class="text-lg font-bold text-[#4A7C59] mb-4">Crear Nuevo Corral</h3>
+  <form (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label class="block text-[#2D3748]">Nombre del corral:</label>
+      <input class="border rounded-lg p-2 w-full" [(ngModel)]="newCorral.nombre" name="nombre" required>
+    </div>
+
+    <div>
+      <label class="block text-[#2D3748]">Capacidad máxima:</label>
+      <input type="number" class="border rounded-lg p-2 w-full" [(ngModel)]="newCorral.capacidad" name="capacidad" required min="1">
+    </div>
+
+    <button type="submit" class="bg-[#4A7C59] text-white px-4 py-2 rounded-lg hover:bg-[#A84448]">Crear Corral</button>
+  </form>
+</div>

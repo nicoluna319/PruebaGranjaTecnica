@@ -60,6 +60,16 @@ public class AnimalService implements IAnimalService {
                 .map(this::entityToResponse);
     }
 
+    public Page<AnimalResp> getAnimalsByCorral(Long corralId, int page, int size, String sortType) {
+        PageRequest pageRequest = PageRequest.of(page, size, 
+            sortType.equalsIgnoreCase("ASC") ? Sort.by("id").ascending() : Sort.by("id").descending());
+    
+        return animalRepository.findByCorralId(corralId, pageRequest)
+                .map(this::entityToResponse);
+    }
+    
+    
+
     @Override
     public AnimalResp update(AnimalReq request, Long id) {
         AnimalEntity existingAnimal = find(id);

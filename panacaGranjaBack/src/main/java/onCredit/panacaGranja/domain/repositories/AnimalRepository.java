@@ -2,7 +2,8 @@ package onCredit.panacaGranja.domain.repositories;
 
 import java.util.List;
 
-
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,7 +17,9 @@ public interface AnimalRepository extends JpaRepository<AnimalEntity, Long> {
     List<AnimalEntity> findByCorralId(Long corralId);
 
     long countByCorralId(Long corralId);
-    
+
+    Page<AnimalEntity> findByCorralId(Long corralId, Pageable pageable);
+
     @Query("SELECT COUNT(a.id) > 0 FROM AnimalEntity a WHERE a.corral.id = :corralId")
     boolean existsByCorralId(Long corralId);
 
@@ -27,6 +30,8 @@ public interface AnimalRepository extends JpaRepository<AnimalEntity, Long> {
     boolean existsByCorralIdAndId(Long corralId, Long animalId);
 
     @Query("SELECT AVG(a.edad) FROM AnimalEntity a WHERE a.corral.id = :corralId")
-Double findAverageAgeByCorralId(@Param("corralId") Long corralId);
+    Double findAverageAgeByCorralId(@Param("corralId") Long corralId);
+
+    
 }
  

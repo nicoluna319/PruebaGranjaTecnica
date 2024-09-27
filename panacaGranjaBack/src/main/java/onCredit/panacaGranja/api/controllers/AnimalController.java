@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +22,8 @@ import onCredit.panacaGranja.infrastructure.services.AnimalService;
 import onCredit.panacaGranja.utils.enums.SortType;
 
 @RestController
-@RequestMapping("/api/v1/animales")
+@RequestMapping("/animales")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class AnimalController {
 
     private final AnimalService animalService;
@@ -80,4 +79,16 @@ public ResponseEntity<Double> getAverageAgeByCorral(@PathVariable Long corralId)
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/corral/{corralId}/animales")
+public ResponseEntity<Page<AnimalResp>> getAnimalsByCorral(
+        @PathVariable Long corralId,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size,
+        @RequestParam(defaultValue = "ASC") String sortType) {
+
+    Page<AnimalResp> animals = animalService.getAnimalsByCorral(corralId, page, size, sortType);
+    return ResponseEntity.ok(animals);
+}
+
+    
 }

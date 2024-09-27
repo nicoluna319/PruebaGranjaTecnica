@@ -1,0 +1,32 @@
+<h3 class="text-lg font-bold text-[#4A7C59] mb-4">Resumen de Animales por Corral</h3>
+
+<div *ngFor="let resumen of resumenAnimales" class="mb-6">
+  <h4 class="text-md font-semibold text-[#A84448]">{{ resumen.nombreCorral }}</h4>
+  
+  <table class="w-full mt-2 table-auto border-collapse bg-white shadow-lg rounded-lg">
+    <thead class="bg-[#D9BF77] text-[#2D3748]">
+      <tr>
+        <th class="p-2 border">ID</th>
+        <th class="p-2 border">Nombre</th>
+        <th class="p-2 border">Especie</th>
+        <th class="p-2 border">Edad</th>
+        <th class="p-2 border">Peligroso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let animal of resumen.animales" class="hover:bg-[#F1F5F9]">
+        <td class="p-2 border">{{ animal.id }}</td>
+        <td class="p-2 border">{{ animal.nombre }}</td>
+        <td class="p-2 border">{{ animal.especie }}</td>
+        <td class="p-2 border">{{ animal.edad }}</td>
+        <td class="p-2 border" [style.color]="animal.peligroso ? '#A84448' : '#2D3748'">{{ animal.peligroso ? 'Sí' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h5 class="text-md font-semibold text-[#4A7C59] mt-4">Animales peligrosos en este corral:</h5>
+  <ul *ngIf="resumen.animalesPeligrosos.length > 0" class="list-disc pl-5 text-[#2D3748]">
+    <li *ngFor="let animal of resumen.animalesPeligrosos">{{ animal.nombre }} ({{ animal.especie }})</li>
+  </ul>
+  <p *ngIf="resumen.animalesPeligrosos.length === 0" class="text-red-600">No hay animales peligrosos en este corral.</p>
+</div>

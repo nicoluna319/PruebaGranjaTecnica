@@ -1,0 +1,20 @@
+<div class="p-4 bg-[#F1F5F9] rounded-lg">
+  <h3 class="text-lg font-bold text-[#4A7C59] mb-4">Definir Restricción entre Animales</h3>
+  <form (ngSubmit)="onSubmit()" class="space-y-4">
+    <div>
+      <label class="block text-[#2D3748]">Animal:</label>
+      <select class="border rounded-lg p-2 w-full" [(ngModel)]="newRestriccion.animalId" name="animalId" required>
+        <option *ngFor="let animal of animals" [value]="animal.id">{{ animal.nombre }}</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-[#2D3748]">Animal Restringido:</label>
+      <select class="border rounded-lg p-2 w-full" [(ngModel)]="newRestriccion.animalRestringidoId" name="animalRestringidoId" required>
+        <option *ngFor="let animal of animals" [value]="animal.id">{{ animal.nombre }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="bg-[#4A7C59] text-white px-4 py-2 rounded-lg hover:bg-[#A84448]">Definir Restricción</button>
+  </form>
+</div>
